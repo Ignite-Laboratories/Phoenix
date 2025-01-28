@@ -18,27 +18,25 @@ func UnPaint(data []bit, pathway []Node) []Node {
 
 	// Node 1: Find the best pattern
 PatternLoop:
-	for pattern := nibble(15); pattern < 16; pattern-- {
-		for scale := nibble(15); scale <= 1; scale-- { // NOTE: scale `0` is a `terminus`
-			for frequency := crumb(0); frequency <= 3; frequency++ {
-				for offset := morsel(0); offset <= 63; offset++ {
-					node := Node{
-						Pattern:   pattern,
-						Scale:     scale,
-						Frequency: frequency,
-						Offset:    offset,
-					}
-					synthesized := SynthesizePattern(len(data), node)
-					result := XOR(data, synthesized)
-					count := CountOnes(result)
-					if count < bestCount {
-						bestNode = node
-						bestCount = count
+	for scale := crumb(0); scale < 4; scale++ {
+		for frequency := crumb(0); frequency < 4; frequency++ {
+			for pattern := nibble(15); pattern < 16; pattern-- {
+				node := Node{
+					Pattern:   pattern,
+					Scale:     scale,
+					Frequency: frequency,
+				}
+				
+				synthesized := SynthesizePattern(len(data), node)
+				result := XOR(data, synthesized)
+				count := CountOnes(result)
+				if count < bestCount {
+					bestNode = node
+					bestCount = count
 
-						// Break out of the entire loop structure when the count is empty
-						if count == 0 {
-							break PatternLoop
-						}
+					// Break out of the entire loop structure when the count is empty
+					if count == 0 {
+						break PatternLoop
 					}
 				}
 			}

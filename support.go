@@ -17,12 +17,24 @@ type nibble byte
 type morsel byte
 
 // A Node represents a point of synthesis information for a pathway.
-// It's stored in two bytes worth of encoded information.
+//
+// Scale values:
+//
+//	0 -> Terminus
+//	1 -> bit : bit
+//	2 -> width/2 : bit
+//	3 -> width : bit
+//
+// Frequency values:
+//
+//	0 -> Tiled
+//	1 -> Once
+//	2 -> Twice
+//	3 -> Thrice
 type Node struct {
-	Scale     nibble
-	Pattern   nibble
+	Scale     crumb
 	Frequency crumb
-	Offset    morsel
+	Pattern   nibble
 }
 
 // CountOnes counts the number of 1s in a bit slice
@@ -79,7 +91,7 @@ func ToBits[T BITS](value T) []bit {
 
 // FromBits takes in a BITS type and returns a slice of its constituent bits
 func FromBits[T BITS](bits []bit) T {
-	bitSize := 0
+	bitSize := byte(0)
 	switch any(new(T)).(type) {
 	case crumb:
 		bitSize = 2
@@ -91,9 +103,9 @@ func FromBits[T BITS](bits []bit) T {
 		bitSize = 8
 	}
 
-	result := 0
+	result := byte(0)
 	for i, b := range bits {
-		result |= byte(b) << ((bitSize - 1) - i)
+		result |= byte(b) << ((bitSize - byte(1)) - byte(i))
 	}
 
 	return T(result)
@@ -110,7 +122,7 @@ func BytesToBits(data []byte) []bit {
 
 // GetIpsum returns the provided number of paragraphs of 'Lorem ipsum' for sample data
 func GetIpsum(paragraphs int) []byte {
-	ipsum := "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque imperdiet libero eu neque facilisis, ac pretium nisi dignissim. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla."
+	ipsum := `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque imperdiet libero eu neque facilisis, ac pretium nisi dignissim. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla.`
 	toReturn := ipsum
 	for i := 0; i < paragraphs; i++ {
 		toReturn += ipsum
