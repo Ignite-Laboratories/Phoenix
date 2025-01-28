@@ -16,8 +16,9 @@ type nibble byte
 // A morsel represents six bits [0 - 63 or -32 - 31]
 type morsel byte
 
-// A Step represents two bytes of encoded information
-type Step struct {
+// A Node represents a point of synthesis information for a pathway.
+// It's stored in two bytes worth of encoded information.
+type Node struct {
 	Scale     nibble
 	Pattern   nibble
 	Frequency crumb
