@@ -20,17 +20,19 @@ type morsel byte
 //
 // Scale values:
 //
-//	0 -> Terminus
-//	1 -> bit : bit
-//	2 -> width/2 : bit
-//	3 -> width : bit
+//	0 - TERMINUS
+//	1 - 1:1
+//	2 - 2:1
+//	3 - 4:1
 //
 // Frequency values:
 //
-//	0 -> Tiled
-//	1 -> Once
-//	2 -> Twice
-//	3 -> Thrice
+//	0 - Tiled
+//	1 - Thrice
+//	2 - Twice
+//	3 - Once
+//
+// NOTE: These are reverse ordered to ensure the densest patterns always match first
 type Node struct {
 	Scale     crumb
 	Frequency crumb
