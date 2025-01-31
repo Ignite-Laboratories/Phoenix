@@ -1,123 +1,38 @@
 package main
 
-type BITS interface {
-	bit | crumb | nibble | morsel | byte
-}
-
 // A bit represents a single binary value [0 - 1]
 type bit byte
 
-// A crumb represents two bits [0 - 3]
-type crumb byte
+const (
+	Zero bit = 0
+	One  bit = 1
+)
 
-// A nibble represents four bits [0 - 15]
-type nibble byte
-
-// A morsel represents six bits [0 - 63 or -32 - 31]
-type morsel byte
-
-// A Node represents a point of synthesis information for a pathway.
-//
-// Scale values:
-//
-//	0 - TERMINUS
-//	1 - 1:1
-//	2 - 2:1
-//	3 - 4:1
-//
-// Frequency values:
-//
-//	0 - Tiled
-//	1 - Thrice
-//	2 - Twice
-//	3 - Once
-//
-// NOTE: These are reverse ordered to ensure the densest patterns always match first
-type Node struct {
-	Scale     crumb
-	Frequency crumb
-	Pattern   nibble
-}
-
-// CountOnes counts the number of 1s in a bit slice
-func CountOnes(data []bit) int {
-	count := 0
-	for i := 0; i < len(data); i++ {
-		count += int(data[i])
-	}
-	return count
-}
-
-// Subdivide splits a slice into two halves using integer math
-func Subdivide(data []bit) [][]bit {
-	pivot := len(data) / 2 // This always rounds downward
-	return [][]bit{data[:pivot], data[pivot:]}
-}
-
-// XOR takes two equal length slices, XORs their respective indices, and returns the results
-func XOR(a []bit, b []bit) []bit {
-	result := make([]bit, len(a))
-	for i := 0; i < len(a); i++ {
-		result[i] = a[i] ^ b[i]
-	}
-	return result
-}
-
-// ToBits takes in a BITS type and returns a slice of its constituent bits
-func ToBits[T BITS](value T) []bit {
-	n := int(value)
-	var bits []bit
-	bitSize := 0
-	switch any(value).(type) {
-	case crumb:
-		bitSize = 2
-	case nibble:
-		bitSize = 4
-	case morsel:
-		bitSize = 6
-	case byte:
-		bitSize = 8
+// ToBits takes an integer and returns its constituent bits
+func ToBits(num int) []bit {
+	if num == 0 {
+		return []bit{bit(0)}
 	}
 
-	if n < 0 {
-		n = n & ((1 << bitSize) - 1)
+	var bs []bit
+	for num > 0 {
+		b := bit(num % 2)  // Get the least significant bit
+		bs = append(bs, b) // Append the bit
+		num /= 2           // Shift right by dividing by 2
 	}
 
-	for i := 0; i < bitSize; i++ {
-		bits = append([]bit{bit(n & 1)}, bits...)
-		n >>= 1
+	for left, right := 0, len(bs)-1; left < right; left, right = left+1, right-1 {
+		bs[left], bs[right] = bs[right], bs[left]
 	}
 
-	return bits
-}
-
-// FromBits takes in a BITS type and returns a slice of its constituent bits
-func FromBits[T BITS](bits []bit) T {
-	bitSize := byte(0)
-	switch any(new(T)).(type) {
-	case crumb:
-		bitSize = 2
-	case nibble:
-		bitSize = 4
-	case morsel:
-		bitSize = 6
-	case byte:
-		bitSize = 8
-	}
-
-	result := byte(0)
-	for i, b := range bits {
-		result |= byte(b) << ((bitSize - byte(1)) - byte(i))
-	}
-
-	return T(result)
+	return bs
 }
 
 // BytesToBits takes a slice of bytes and returns a slice of all of its individual bits
 func BytesToBits(data []byte) []bit {
 	dataBits := make([]bit, 0, len(data)*8)
 	for _, b := range data {
-		dataBits = append(dataBits, ToBits(b)...)
+		dataBits = append(dataBits, ToBits(int(b))...)
 	}
 	return dataBits
 }
