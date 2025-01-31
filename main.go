@@ -2,6 +2,8 @@ package main
 
 import "fmt"
 
+var maxPatternWidth = 128
+
 func main() {
 	composition := NewComposition(BytesToBits(GetIpsum(1)))
 	composition.UnPaint()
@@ -21,44 +23,43 @@ func (c *Composition) UnPaint() {
 	// Trim the end of the timeline as it's irrelevant at this point in the process
 	c.TrimEndZeros()
 
-	// Find the largest size that could potentially repeat (half the width of the data)
-	maxPatternWidth := len(c.Timeline) / 2
-
 	// Walk the biggest pattern down to the smallest as 'pattern' [ᴪ] [1 bit wide]
 	for patternWidth := maxPatternWidth; patternWidth > 0; patternWidth-- {
+		w := bestWave
+		w.Pattern = c.Timeline[:patternWidth]
 
 		// Walk the frequencies of that pattern down as 'frequency' [ν] [2 minimum]
 		maxFrequency := len(c.Timeline) / patternWidth
-		bestFrequency := CountOnes(c.Timeline)
-	FrequencyLoop:
 		for frequency := maxFrequency; frequency > 1; frequency-- {
+			w.Frequency = frequency
 
 			// Calculate the amount of negative space from this pattern/frequency combination
 			negativeSpace := len(c.Timeline) - (patternWidth * frequency)
 
 			// Walk the negative space upward as 'periodicity' [τ]
-			for period := 0; period < negativeSpace; period++ {
-				w := bestWave
-				w.Frequency = frequency
-				w.Pattern = c.Timeline[:patternWidth]
+			for period := 0; period*(frequency-1) <= negativeSpace; period++ {
+				if negativeSpace < 0 || period*(frequency-1) > negativeSpace {
+					continue
+				}
+
 				w.Period = period
 
 				testResult := c.SynthesizeWave(w)
 				ones := CountOnes(testResult)
 
 				if ones < bestOnes {
+					fmt.Println(w)
+					fmt.Println(ones)
+					if ones == 0 {
+						fmt.Println("0")
+					}
 					bestOnes = ones
 					bestWave = w
 					bestResult = testResult
 				}
 			}
-
-			// If the amount of ones has already reduced at a high frequency, walking the remaining
-			// frequencies would ALWAYS increase the count -> pointless calculations.
-			if CountOnes(bestResult) < bestFrequency {
-				break FrequencyLoop
-			}
 		}
+		fmt.Println(patternWidth)
 	}
 
 	// Trim the timeline by the phase + best found pattern width
@@ -76,6 +77,22 @@ func (c *Composition) UnPaint() {
 // SynthesizeWave takes a composition and projects the provided wave across it, returning the XORd result.
 // Use this to test how a wave de-energizes a composition for comparison.
 func (c *Composition) SynthesizeWave(wave Wave) []bit {
-	fmt.Println(wave)
-	return nil
+	// Create a new timeline
+	timeline := make([]bit, len(c.Timeline))
+	copy(timeline, c.Timeline)
+
+	remainingOccurrences := wave.Frequency
+	for outer := wave.Phase; outer < len(timeline); outer += len(wave.Pattern) {
+		if remainingOccurrences == 0 {
+			break
+		}
+		remainingOccurrences--
+
+		for inner := 0; inner < len(wave.Pattern); inner++ {
+			index := outer + inner
+			timeline[index] = c.Timeline[index] ^ wave.Pattern[inner]
+		}
+		outer += wave.Period
+	}
+	return timeline
 }

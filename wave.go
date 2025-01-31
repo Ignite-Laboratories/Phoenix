@@ -16,5 +16,5 @@ func (w Wave) String() string {
 	// φ - Phase
 	// τ - Period
 	// ν - Frequency
-	return fmt.Sprintf("·ω - ν%d φ%d τ%d ᴪ%d", w.Pattern, w.Frequency, w.Phase, w.Period)
+	return fmt.Sprintf("·ω - ν%d φ%d τ%d ᴪ%d", w.Frequency, w.Phase, w.Period, w.Pattern)
 }
