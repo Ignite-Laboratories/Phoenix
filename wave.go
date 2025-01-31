@@ -12,7 +12,7 @@ type Wave struct {
 
 func (w Wave) String() string {
 	// ω - Waveform
-	// ᴪ - Particle
+	// ᴪ - Pattern/Particle
 	// φ - Phase
 	// τ - Period
 	// ν - Frequency
