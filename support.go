@@ -3,6 +3,15 @@ package main
 // A bit represents a single binary value [0 - 1]
 type bit byte
 
+// A crumb represents two binary values [0-3]
+type crumb byte
+
+// A nibble represents four binary values [0-15]
+type nibble byte
+
+// A morsel represents six binary values [0-63]
+type morsel byte
+
 const (
 	Zero bit = 0
 	One  bit = 1
