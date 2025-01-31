@@ -38,5 +38,11 @@ func (c *Composition) Paint() {
 }
 
 func (c *Composition) UnPaint() {
+	for phase := 0; phase < MaxPhase; phase++ {
+		for period := 0; period < MaxPeriod; period++ {
+			for frequency := MinFrequency; frequency < MaxFrequency; frequency++ {
 
+			}
+		}
+	}
 }

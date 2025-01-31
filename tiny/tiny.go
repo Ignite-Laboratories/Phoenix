@@ -9,17 +9,18 @@ const One Bit = 1
 // A Crumb represents two binary values [0-3]
 type Crumb byte
 
-const CrumbMax Crumb = 4
+const CrumbMax = 4
 
 // A Nibble represents four binary values [0-15]
 type Nibble byte
 
-const NibbleMax Nibble = 16
+const NibbleMax = 16
 
 // A Morsel represents six binary values [0-63]
 type Morsel byte
 
-const MorselMax Morsel = 64
+const MorselMax = 64
+const ByteMax = 256
 
 // ToBits takes an integer and returns its constituent bits
 func ToBits(num int) []Bit {

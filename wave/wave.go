@@ -5,6 +5,11 @@ import (
 	"fmt"
 )
 
+const MaxPhase = tiny.CrumbMax
+const MaxPeriod = tiny.NibbleMax
+const MinFrequency = 4
+const MaxFrequency = tiny.MorselMax
+
 // A Wave defines how to project a value across time spatially.
 // The Form is a slice of bits up to 4 indices long.
 // The Period is how many indices to skip between bits. [0-15]
