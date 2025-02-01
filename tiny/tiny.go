@@ -11,6 +11,11 @@ type Crumb byte
 
 const CrumbMax = 4
 
+// A Note represents three binary values [0-7]
+type Note byte
+
+const NoteMax = 8
+
 // A Nibble represents four binary values [0-15]
 type Nibble byte
 

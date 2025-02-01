@@ -9,7 +9,7 @@ import (
 type Composition struct {
 	Name     string
 	Timeline []tiny.Bit
-	Waves    []Wave
+	Waves    []Pulse
 }
 
 // NewComposition starts a new timeline and trims it's ending zeros.
@@ -17,7 +17,7 @@ func NewComposition(name string, bits []tiny.Bit) Composition {
 	c := Composition{
 		Name:     name,
 		Timeline: bits,
-		Waves:    []Wave{},
+		Waves:    []Pulse{},
 	}
 	return c
 }
@@ -41,13 +41,13 @@ func (c *Composition) UnPaint() {
 	for phase := 0; phase < MaxPhase; phase++ {
 		for period := 0; period < MaxPeriod; period++ {
 			for length := MaxForm; length > 0; length-- {
-				wave := c.IdentifyWave(Wave{
+				wave := c.IdentifyWave(Pulse{
 					Form:   make([]tiny.Bit, length),
 					Period: tiny.Nibble(period),
 					Phase:  tiny.Crumb(phase),
 				})
 
-				if wave.Frequency >= 4 && len(wave.Form) > 1 {
+				if wave.Frequency >= 12 {
 					fmt.Printf("%v\n", wave)
 				}
 			}
@@ -55,12 +55,12 @@ func (c *Composition) UnPaint() {
 	}
 }
 
-func (c *Composition) ExtractWave(w Wave) {
+func (c *Composition) ExtractWave(w Pulse) {
 
 }
 
 // IdentifyWave takes in partial wave information and projects it onto the timeline while finding its frequency and form.
-func (c *Composition) IdentifyWave(w Wave) Wave {
+func (c *Composition) IdentifyWave(w Pulse) Pulse {
 	index := int(w.Phase)
 
 formLoop:
