@@ -5,13 +5,14 @@ import (
 	"fmt"
 )
 
-const MaxPhase = tiny.CrumbMax
-const MaxPeriod = tiny.NibbleMax
+const MaxForm = 16
+const MaxPhase = 256  // tiny.CrumbMax
+const MaxPeriod = 256 // tiny.NibbleMax
 const MinFrequency = 4
 const MaxFrequency = tiny.MorselMax
 
 // A Wave defines how to project a value across time spatially.
-// The Form is a slice of bits up to 4 indices long.
+// The Form is the repeating pattern, up to 4 indices long.
 // The Period is how many indices to skip between bits. [0-15]
 // The Phase is how many indices in to start the projection. [0-3]
 // The Frequency is how many times to repeat the form. [0-63]
@@ -23,5 +24,5 @@ type Wave struct {
 }
 
 func (w Wave) String() string {
-	return fmt.Sprintf("%vƒ\t%3dχ\t%3dτ\t%3dφ", w.Form, w.Frequency, w.Period, w.Phase)
+	return fmt.Sprintf("%3dχ\t%3dτ\t%3dφ\t%vƒ", w.Frequency, w.Period, w.Phase, w.Form)
 }

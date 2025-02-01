@@ -40,9 +40,50 @@ func (c *Composition) Paint() {
 func (c *Composition) UnPaint() {
 	for phase := 0; phase < MaxPhase; phase++ {
 		for period := 0; period < MaxPeriod; period++ {
-			for frequency := MinFrequency; frequency < MaxFrequency; frequency++ {
+			for length := MaxForm; length > 0; length-- {
+				wave := c.IdentifyWave(Wave{
+					Form:   make([]tiny.Bit, length),
+					Period: tiny.Nibble(period),
+					Phase:  tiny.Crumb(phase),
+				})
 
+				if wave.Frequency >= 4 && len(wave.Form) > 1 {
+					fmt.Printf("%v\n", wave)
+				}
 			}
 		}
 	}
+}
+
+func (c *Composition) ExtractWave(w Wave) {
+
+}
+
+// IdentifyWave takes in partial wave information and projects it onto the timeline while finding its frequency and form.
+func (c *Composition) IdentifyWave(w Wave) Wave {
+	index := int(w.Phase)
+
+formLoop:
+	for index < len(c.Timeline) {
+		for formIndex := 0; formIndex < len(w.Form) && index < len(c.Timeline); formIndex++ {
+			if w.Frequency == 0 {
+				w.Form[formIndex] = c.Timeline[index]
+			} else {
+				// Check if the timeline matches this occurrence's index
+				if c.Timeline[index] != w.Form[formIndex] {
+					break formLoop // ...break if not
+				}
+			}
+
+			// If we fully finish walking a pattern, increment the frequency
+			if formIndex == len(w.Form)-1 {
+				w.Frequency++
+			}
+
+			// Walk forward the wave's periodicity
+			index += int(w.Period) + 1
+		}
+	}
+
+	return w
 }

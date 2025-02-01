@@ -23,30 +23,31 @@ const MorselMax = 64
 const ByteMax = 256
 
 // ToBits takes an integer and returns its constituent bits
-func ToBits(num int) []Bit {
-	if num == 0 {
+func ToBits(value int) []Bit {
+	if value == 0 {
 		return []Bit{Bit(0)}
 	}
 
-	var bs []Bit
-	for num > 0 {
-		b := Bit(num % 2)  // Get the least significant Bit
-		bs = append(bs, b) // Append the Bit
-		num /= 2           // Shift right by dividing by 2
+	var bits []Bit
+	for value > 0 {
+		bit := Bit(value % 2)    // Get the least significant Bit
+		bits = append(bits, bit) // Append the Bit
+		value /= 2               // Shift right by dividing by 2
 	}
 
-	for left, right := 0, len(bs)-1; left < right; left, right = left+1, right-1 {
-		bs[left], bs[right] = bs[right], bs[left]
+	// Reverse the slice
+	for left, right := 0, len(bits)-1; left < right; left, right = left+1, right-1 {
+		bits[left], bits[right] = bits[right], bits[left]
 	}
 
-	return bs
+	return bits
 }
 
 // BytesToBits takes a slice of bytes and returns a slice of all of its individual bits
 func BytesToBits(data []byte) []Bit {
-	dataBits := make([]Bit, 0, len(data)*8)
+	bits := make([]Bit, 0, len(data)*8)
 	for _, b := range data {
-		dataBits = append(dataBits, ToBits(int(b))...)
+		bits = append(bits, ToBits(int(b))...)
 	}
-	return dataBits
+	return bits
 }
