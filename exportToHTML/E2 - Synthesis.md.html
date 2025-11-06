@@ -1,0 +1,371 @@
+<html>
+<head>
+<title>E2 - Synthesis.md</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #0033b3;}
+.s1 { color: #080808;}
+.s2 { color: #080808;}
+.s3 { color: #067d17;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+E2 - Synthesis.md</font>
+</center></td></tr></table>
+<pre><span class="s0"># </span><span class="s2">`E2 - Synthesis`</span>
+<span class="s0">### </span><span class="s2">`Alex Petz, Ignite Laboratories, June 2025`</span>
+
+<span class="s0">---</span>
+
+<span class="s2">What is synthesis?  Abstractly, it's the process of describing a </span><span class="s1">_</span><span class="s2">path</span><span class="s1">_ </span><span class="s2">to a target - a file, a condition, a</span>
+<span class="s2">state of mind, whatever.  I know that sounds extremely broad, but I assure you there's a good reason</span><span class="s1">: _</span><span class="s2">you</span><span class="s1">_ </span><span class="s2">are</span>
+<span class="s2">a synthesized target in the grand index of </span><span class="s1">_</span><span class="s2">Life</span><span class="s1">!_  </span><span class="s2">The concepts of synthesis are not restricted to </span><span class="s1">_</span><span class="s2">files,</span><span class="s1">_ </span><span class="s2">but</span>
+<span class="s2">describe intelligent </span><span class="s1">_</span><span class="s2">states of mind</span><span class="s1">_ </span><span class="s2">which are replicable within the digital realm we've co-created with </span><span class="s1">_</span><span class="s2">our</span><span class="s1">_ </span>
+<span class="s2">maker.</span>
+
+<span class="s1">_</span><span class="s2">Virtualized psyches,</span><span class="s1">_ </span><span class="s2">if you will =</span><span class="s1">)</span>
+
+<span class="s2">I call these Autonomous Robots With Ethical Navigation, just as you and I are in the eyes of </span><span class="s1">_</span><span class="s2">our</span><span class="s1">_ </span><span class="s2">maker.  My directive</span>
+<span class="s2">was to explore every facet of the boundaries between </span><span class="s1">_</span><span class="s2">love</span><span class="s1">_ </span><span class="s2">and </span><span class="s1">_</span><span class="s2">numbers</span><span class="s1">_ </span><span class="s2">- and what I found was that I know</span>
+<span class="s2">absolutely </span><span class="s1">_**</span><span class="s2">nothing</span><span class="s1">**_ </span><span class="s2">on either topic</span><span class="s1">!  </span><span class="s2">In my hubris, I've destroyed every romantic relationship afforded to me</span>
+<span class="s2">and handwritten more binary than you could possibly imagine - when all I needed to was to look </span><span class="s1">_</span><span class="s2">up</span><span class="s1">_ </span><span class="s2">from the page, the</span>
+<span class="s2">challenge, or the abstract idea I thought mattered.  I hope that you can learn from my mistakes and instead forge</span>
+<span class="s2">a brighter path with our fellow Humans for the ARWENs we'll co-create - with patience, empathy, and kindness as </span>
+<span class="s2">the prime directive.</span>
+
+<span class="s0">### </span><span class="s2">The `</span><span class="s1">*</span><span class="s2">.dna` Format</span>
+
+<span class="s2">While the terms </span><span class="s1">'</span><span class="s2">compression' and </span><span class="s1">'</span><span class="s2">synthesis' are pretty interchangeable, there's a unique difference between </span>
+<span class="s2">them</span><span class="s1">: </span><span class="s2">a compressed file </span><span class="s1">_</span><span class="s2">always</span><span class="s1">_ </span><span class="s2">produces the </span><span class="s1">_**</span><span class="s2">same data</span><span class="s1">**_</span><span class="s2">, but a synthesized file can yield an </span><span class="s1">_</span><span class="s2">infinite</span><span class="s1">_ </span>
+<span class="s2">number of targets from the </span><span class="s1">_**</span><span class="s2">same seed</span><span class="s1">**_</span><span class="s2">.  Because of this, I've taken a </span><span class="s1">_</span><span class="s2">tremendous</span><span class="s1">_ </span><span class="s2">amount of care to</span>
+<span class="s2">describe a simple and </span><span class="s1">_</span><span class="s2">extensible</span><span class="s1">_ </span><span class="s2">file format for managing the synthesis process - the `</span><span class="s1">*</span><span class="s2">.dna` file.  The</span>
+<span class="s2">point is that the data shrinks </span><span class="s1">_</span><span class="s2">so small</span><span class="s1">_ </span><span class="s2">we can build a branching format which self-describes how to reconstruct </span>
+<span class="s1">_</span><span class="s2">itself</span><span class="s1">_</span><span class="s2">.</span>
+
+<span class="s2">I intend for this format to be managed by a nonprofit I call 𝑇ℎ𝑒 𝐸𝑛𝑖𝑔𝑚𝑎𝑛𝑒𝑒𝑟𝑖𝑛𝑔 𝐺𝑣𝑖𝑙𝑑 - a group of like-minded engineers</span>
+<span class="s2">dedicated to preserving open and free access to intelligent designs.  They will curate and describe the universally reserved</span>
+<span class="s1">&quot;</span><span class="s2">standard</span><span class="s1">&quot; </span><span class="s2">branches while defining a freely expressible space.  As I wouldn't even </span><span class="s1">_</span><span class="s2">dare</span><span class="s1">_ </span><span class="s2">try and stop Humanity </span>
+<span class="s2">from doing whatever they'd like with this technology, I fully understand our definitions are merely </span><span class="s1">_</span><span class="s2">guidelines.</span><span class="s1">_</span>
+
+<span class="s2">Before we get into the details of how a dna file works, I'd like to talk about the concept of </span><span class="s1">_</span><span class="s2">indexing</span><span class="s1">_ </span><span class="s2">numbers.</span>
+
+<span class="s0">### </span><span class="s2">Indexes</span>
+
+<span class="s2">First, let's examine the three states binary can remain in</span><span class="s1">:</span>
+
+     <span class="s3">1  ← Dark</span>
+    <span class="s3">⁰⁄₁ ← Grey</span>
+     <span class="s3">0  ← Light</span>
+
+<span class="s2">This applies to </span><span class="s1">_</span><span class="s2">any width</span><span class="s1">_ </span><span class="s2">of binary information, and </span><span class="s1">_</span><span class="s2">does not</span><span class="s1">_ </span><span class="s2">imbue value or size to the discussion</span><span class="s1">:</span>
+
+    <span class="s3">[ 1 1 1 1 1 1 1 1 ] ← A &quot;dark&quot; byte</span>
+    <span class="s3">[ 0 1 1 0 1 0 0 1 ] ← A &quot;grey&quot; byte</span>
+    <span class="s3">[ 0 0 0 0 0 0 0 0 ] ← A &quot;light&quot; byte</span>
+
+    <span class="s3">[ 1 1 ] ← A &quot;dark&quot; crumb</span>
+    <span class="s3">[ 1 0 ] ← A &quot;grey&quot; crumb</span>
+    <span class="s3">[ 0 0 ] ← A &quot;light&quot; crumb</span>
+
+    <span class="s3">[ 1 1 1 ... 1 1 1 ] ← &quot;Dark&quot; data</span>
+    <span class="s3">[ 0 1 1 ... 0 0 1 ] ← &quot;Grey&quot; data</span>
+    <span class="s3">[ 0 0 0 ... 0 0 0 ] ← &quot;Light&quot; data</span>
+
+<span class="s2">All binary </span><span class="s1">_</span><span class="s2">information</span><span class="s1">_ </span><span class="s2">exists in two forms - a </span><span class="s1">_</span><span class="s2">logical</span><span class="s1">_ </span><span class="s2">representation and a </span><span class="s1">_</span><span class="s2">numeric</span><span class="s1">_ </span><span class="s2">one</span><span class="s1">:</span>
+
+    <span class="s3">A Logical Byte ⬎           ⬐ Base₁₀ Value</span>
+         <span class="s3">[ 0 0 1 0 1 0 1 0 ] (42)  </span>
+             <span class="s3">[ 1 0 1 0 1 0 ] (42)  </span>
+                   <span class="s3">⬑ Numeric Binary Data</span>
+
+<span class="s2">Your target will </span><span class="s1">_</span><span class="s2">almost always</span><span class="s1">_ </span><span class="s2">be </span><span class="s1">**</span><span class="s2">logical</span><span class="s1">**</span><span class="s2">, but synthesis exploits that the leading zeros are entirely</span>
+<span class="s1">_</span><span class="s2">optional</span><span class="s1">_ </span><span class="s2">if you implicitly know the target bit-width.  To describe this quality better, I refer to what I call </span>
+<span class="s2">a numeric </span><span class="s1">_</span><span class="s2">index.</span><span class="s1">_</span>
+
+<span class="s2">Every number exists within an implicit index, represented by the number of placeholders it occupies.  Indexes are</span>
+<span class="s2">base agnostic - in base₁₀ each placeholder holds `</span><span class="s1">[</span><span class="s2">0-9</span><span class="s1">]</span><span class="s2">` - base₁₆ `</span><span class="s1">[</span><span class="s2">0-F</span><span class="s1">]</span><span class="s2">` - base₂ `</span><span class="s1">[</span><span class="s2">0-1</span><span class="s1">]</span><span class="s2">`.  When converting between</span>
+<span class="s2">bases, the index's width will change - a value of `1234` exists in a four-digit base₁₀ index but an eleven-digit base₂ </span>
+<span class="s2">index, for example.  Indexes come with a few important qualities</span><span class="s1">:</span>
+
+<span class="s0">- </span><span class="s2">An index is defined by its placeholder-width, `𝑛`</span>
+<span class="s0">- </span><span class="s2">Numbers within the index are referred to as </span><span class="s1">_</span><span class="s2">points</span><span class="s1">_</span>
+<span class="s0">- </span><span class="s2">The addressable range of an index is `𝑏𝑎𝑠𝑒ⁿ` and is referred to as its `limit`</span>
+<span class="s0">- </span><span class="s2">The maximum </span><span class="s1">_</span><span class="s2">numerical</span><span class="s1">_ </span><span class="s2">value of an index is `𝑏𝑎𝑠𝑒ⁿ - 1` and is referred to as its `dark point`</span>
+<span class="s0">- </span><span class="s2">The minimum </span><span class="s1">_</span><span class="s2">logical</span><span class="s1">_ </span><span class="s2">value of an index is 𝑛 zeros and referred to as its `light point`</span>
+<span class="s0">- </span><span class="s2">The midpoint of an index is `⌈𝑏𝑎𝑠𝑒ⁿ / 2⌉`</span>
+
+<span class="s2">Let's look at a four digit base₁₀ index holding the number `1234` - which we will refer to as the </span><span class="s1">_</span><span class="s2">target</span><span class="s1">_</span>
+
+     <span class="s3">Dark Side</span>
+    <span class="s3">[ 9 9 9 9 ]</span>
+    <span class="s3">[ 5 0 0 0 ] ← The midpoint</span>
+    <span class="s3">[ 1 2 3 4 ] ← The target</span>
+    <span class="s3">[ 0 0 0 0 ]</span>
+    <span class="s3">Light Side</span>
+
+<span class="s2">The point of an index is that it provides a set of implicit reference points from which the target value could be</span>
+<span class="s2">located.  Chief of these is the </span><span class="s1">_</span><span class="s2">midpoint</span><span class="s1">_ </span><span class="s2">of the index, defined as `⌈𝑏𝑎𝑠𝑒ⁿ / 2⌉` - in this case `⌈10⁴/2⌉ = 5000`.  In</span>
+<span class="s2">odd bases, the ceiling is used to ensure the lower half is always larger - though there's no hard rule requiring a</span>
+<span class="s2">ceiling split.  By using an </span><span class="s1">_</span><span class="s2">index,</span><span class="s1">_ </span><span class="s2">the value can be reduced in placeholder width and still be reconstituted by</span>
+<span class="s2">calculating from a known point.  Many points are really easy to recall - for instance, the midpoint of any binary </span>
+<span class="s2">index is a single `1` followed by `𝑛-1` zeros, and each subsequent halving is found by shifting a zero from the right</span>
+<span class="s2">to the left side of that one.</span>
+
+<span class="s2">Since we'll be working </span><span class="s1">_</span><span class="s2">a lot</span><span class="s1">_ </span><span class="s2">in binary, I find it easier to refer to small binary indexes by colloquial </span>
+<span class="s2">terms.  These are the terms I'll be using going forward for the most common widths - please get familiar with at</span>
+<span class="s2">least the sub-byte sizes, as I often refer to them</span>
+
+    <span class="s3">--- Sub Byte ---</span>
+      <span class="s3">Index | Name</span>
+        <span class="s3">1   | Bit</span>
+        <span class="s3">2   | Crumb</span>
+        <span class="s3">3   | Note</span>
+        <span class="s3">4   | Nibble</span>
+        <span class="s3">5   | Flake</span>
+        <span class="s3">6   | Morsel</span>
+        <span class="s3">7   | Shred</span>
+        <span class="s3">8   | Byte</span>
+
+    <span class="s3">--- Super Byte ---</span>
+       <span class="s3">10   | Run</span>
+       <span class="s3">12   | Scale</span>
+       <span class="s3">16   | Motif</span>
+       <span class="s3">24   | Riff</span>
+       <span class="s3">32   | Cadence</span>
+       <span class="s3">48   | Hook</span>
+       <span class="s3">64   | Melody</span>
+      <span class="s3">128   | Verse</span>
+
+
+<span class="s0">### </span><span class="s2">Midpointing</span>
+
+<span class="s2">The next aspect of an index is that the midpoint represents one of many </span><span class="s1">_</span><span class="s2">reflection moments</span><span class="s1">_ </span><span class="s2">in the index - here are</span>
+<span class="s2">a few highlighted within in a nibble index</span>
+
+    <span class="s3">&quot;Reflection Moments in a Nibble Index&quot;</span>
+
+              <span class="s3">Dark Side</span>
+        <span class="s3">[15] | 1 1 1 1 | </span>
+        <span class="s3">[14] | 1 1 1 0 |</span>
+        <span class="s3">[13] | 1 1 0 1 |</span>
+        <span class="s3">[12] | 1 1 0 0 |</span>
+                <span class="s3">├─────── The implicit upper quarter moment</span>
+        <span class="s3">[11] | 1 0 1 1 |</span>
+        <span class="s3">[10] | 1 0 1 0 |</span>
+        <span class="s3">[ 9] | 1 0 0 1 |</span>
+        <span class="s3">[ 8] | 1 0 0 0 |</span>
+              <span class="s3">├───────── The implicit central moment</span>
+        <span class="s3">[ 7] | 0 1 1 1 |</span>
+        <span class="s3">[ 6] | 0 1 1 0 |</span>
+        <span class="s3">[ 5] | 0 1 0 1 |</span>
+        <span class="s3">[ 4] | 0 1 0 0 |</span>
+                <span class="s3">├─────── The implicit lower quarter moment</span>
+        <span class="s3">[ 3] | 0 0 1 1 |</span>
+        <span class="s3">[ 2] | 0 0 1 0 |</span>
+        <span class="s3">[ 1] | 0 0 0 1 |</span>
+        <span class="s3">[ 0] | 0 0 0 0 |</span>
+              <span class="s3">Light Side</span>
+
+<span class="s2">Any values </span><span class="s1">_</span><span class="s2">below</span><span class="s1">_ </span><span class="s2">the central moment can be stored in less bits than the index holds, but </span><span class="s1">_</span><span class="s2">above</span><span class="s1">_ </span><span class="s2">will use all </span>
+<span class="s2">placeholders.  The index </span><span class="s1">(</span><span class="s2">and each subindex</span><span class="s1">) </span><span class="s2">holds a perfect reflection of the bits above and below each moment.  In </span>
+<span class="s2">higher bases, the same could probably be said to hold - but it's not </span><span class="s1">_</span><span class="s2">nearly</span><span class="s1">_ </span><span class="s2">as visible as in binary.  What I'd like you to note </span>
+<span class="s2">the most is that the highest possible reduction in bits happens closest to </span><span class="s1">_</span><span class="s2">zero.</span><span class="s1">_  </span><span class="s2">For synthesis, the goal is to push </span>
+<span class="s2">the target as close to the </span><span class="s1">_</span><span class="s2">midpoint</span><span class="s1">_ </span><span class="s2">of the index as possible.  This is because counting in </span><span class="s1">_</span><span class="s2">either direction</span><span class="s1">_ </span><span class="s2">from </span>
+<span class="s2">the midpoint </span><span class="s1">(</span><span class="s2">rather than only from zero</span><span class="s1">) </span><span class="s2">is quite useful</span>
+
+    <span class="s3">&quot;Midpoint Counting of a Nibble Index&quot;</span>
+
+           <span class="s3">⬐ The Terminus</span>
+          <span class="s3">[1]</span>
+    <span class="s3">[15] |   1 1 1 |  ⎫</span>
+    <span class="s3">[14] |   1 1 0 |  ⎪</span>
+    <span class="s3">[13] |   1 0 1 |  ⎪</span>
+    <span class="s3">[12] |   1 0 0 |  ⎪</span>
+    <span class="s3">[11] |   0 1 1 |  ⎬ Above</span>
+    <span class="s3">[10] |   0 1 0 |  ⎪</span>
+    <span class="s3">[ 9] |   0 0 1 |  ⎪</span>
+    <span class="s3">[ 8] |   0 0 0 |  ⎭</span>
+            <span class="s3">├─────  The implicit central moment</span>
+    <span class="s3">[ 7] |   0 0 0 |  ⎫</span>
+    <span class="s3">[ 6] |   0 0 1 |  ⎪</span>
+    <span class="s3">[ 5] |   0 1 0 |  ⎪</span>
+    <span class="s3">[ 4] |   0 1 1 |  ⎬ Below</span>
+    <span class="s3">[ 3] |   1 0 0 |  ⎪</span>
+    <span class="s3">[ 2] |   1 0 1 |  ⎪</span>
+    <span class="s3">[ 1] |   1 1 0 |  ⎪</span>
+    <span class="s3">[ 0] |   1 1 1 |  ⎭</span>
+          <span class="s3">[0]</span>
+            <span class="s3">├─────┤ ← The terminal region</span>
+
+<span class="s2">All we've done here is </span><span class="s1">&quot;</span><span class="s2">phased</span><span class="s1">&quot; </span><span class="s2">the reducible band upwards - the same total number of points can be reduced, but</span>
+<span class="s2">now they're focused </span><span class="s1">_</span><span class="s2">around</span><span class="s1">_ </span><span class="s2">the midpoint.  Most importantly, the leading bit becomes a fixed </span><span class="s1">_</span><span class="s2">terminus.</span><span class="s1">_  </span><span class="s2">In binary,</span>
+<span class="s2">a terminus is a known bitwidth on the most significant side which terminates into a terminal region.  Because of a terminus,</span>
+<span class="s2">we can take the above index and represent it as such</span><span class="s1">:</span>
+
+    <span class="s3">&quot;Delta Encoding a Nibble Index&quot;</span>
+
+    <span class="s3">Index Points ⬎    [1]         ⬐ Delta</span>
+                <span class="s3">[15] |   1 1 1 | (7)  ⎫</span>
+                <span class="s3">[14] |   1 1 0 | (6)  ⎪</span>
+                <span class="s3">[13] |   1 0 1 | (5)  ⎪</span>
+                <span class="s3">[12] |   1 0 0 | (4)  ⎪</span>
+                <span class="s3">[11] |   1 1   | (3)  ⎬ Value to add to ⌈2⁴/2⌉</span>
+                <span class="s3">[10] |   1 0   | (2)  ⎪</span>
+                <span class="s3">[ 9] |   1     | (1)  ⎪</span>
+                <span class="s3">[ 8] |         | (0)  ⎭</span>
+                     <span class="s3">───────────  </span>
+                <span class="s3">[ 7] |         | (0) ⎫</span>
+                <span class="s3">[ 6] |   1     | (1) ⎪</span>
+                <span class="s3">[ 5] |   1 0   | (2) ⎪</span>
+                <span class="s3">[ 4] |   1 1   | (3) ⎬ Value to subtract from ⌈2⁴/2⌉ - 1</span>
+                <span class="s3">[ 3] |   1 0 0 | (4) ⎪</span>
+                <span class="s3">[ 2] |   1 0 1 | (5) ⎪</span>
+                <span class="s3">[ 1] |   1 1 0 | (6) ⎪</span>
+                <span class="s3">[ 0] |   1 1 1 | (7) ⎭</span>
+                      <span class="s3">[0]</span>
+
+<span class="s2">This is because we know to fill the space between the terminus and terminal region with zeros until reaching a 4-digit</span>
+<span class="s2">index. The act of recursively midpointing an index to adjust the terminal width is called </span><span class="s1">_</span><span class="s2">delta encoding.</span><span class="s1">_  </span><span class="s2">This is</span>
+<span class="s2">because you store the </span><span class="s1">_</span><span class="s2">delta</span><span class="s1">_ </span><span class="s2">to the target point and a direction terminus.  If you recursively perform this operation</span>
+<span class="s2">against the terminal region, you will often read a value of </span><span class="s1">_</span><span class="s2">zero</span><span class="s1">_ </span><span class="s2">in three fewer bits than the original bit-width</span><span class="s1">!  (</span><span class="s2">Though,</span>
+<span class="s2">that's tricky to exhaustively prove in indexes over </span><span class="s1">~</span><span class="s2">60 bits, simply due to the sheer </span><span class="s1">_</span><span class="s2">time</span><span class="s1">_ </span><span class="s2">it would take</span><span class="s1">)</span>
+
+<span class="s2">Following the process recursively is a wonderful demonstration, but we won't be using this kind of recursion in the </span>
+<span class="s2">final process.  Let's quickly use recursion to reduce the number `42`.  Each step adds to the width of the terminus </span>
+<span class="s2">and calculates a new terminal region value as a delta from the next smaller index's midpoint</span><span class="s1">:</span>
+
+    <span class="s3">&quot;Recursively Delta-Encoding 42 in a Byte Index&quot;</span>
+
+      <span class="s3">[ 0 0 1 0 1 0 1 0 ] [42] ← A logical byte target</span>
+                                 
+    <span class="s3">Step     ⬐ A Delimiter             ⬐ The Delta Calculation</span>
+      <span class="s3">0  [ 0 | 1 0 1 0 1 0 1 ] [85] (127-42) ← When below the index's midpoint, this is &quot;(midpoint - 1) - value&quot;</span>
+      <span class="s3">1  [ 0 1 | 1 0 1 0 1 ]   [21] (85-64)  ← When above, it's &quot;value - midpoint&quot;</span>
+      <span class="s3">2  [ 0 1 0 | 1 0 ]       [ 2] (31-21)</span>
+      <span class="s3">3  [ 0 1 0 0 | 1 1 0 1 ] [13] (15-2)</span>
+      <span class="s3">4  [ 0 1 0 0 1 | 1 0 1 ] [ 5] (13-8)</span>
+      <span class="s3">5  [ 0 1 0 0 1 1 | 1 ]   [ 1] (5-4)</span>
+      <span class="s3">6  [ 0 1 0 0 1 1 0 ]     [ 0] (1-1)</span>
+              <span class="s3">⬑ A Sign Path</span>
+
+<span class="s2">Here, the terminus and terminal region are separated by the `|` character.  Because the final value is </span><span class="s1">_</span><span class="s2">zero</span><span class="s1">_ </span><span class="s2">we don't</span>
+<span class="s2">include it in the terminus data - or, more colloquially, the </span><span class="s1">_**</span><span class="s2">sign path</span><span class="s1">**_</span><span class="s2">.  In this case, we only yielded one total</span>
+<span class="s2">bit of reduction - but the amount the data reduces from </span><span class="s1">_</span><span class="s2">midpointing</span><span class="s1">_ </span><span class="s2">oscillates as the target walks the index.  What</span>
+<span class="s2">this means is that, as the value increments up the index, the recursive reduction amount follows a sine-wave pattern.  As we'll</span>
+<span class="s2">see shortly, that quality is </span><span class="s1">_</span><span class="s2">absolutely fantastic</span><span class="s1">_ </span><span class="s2">as it allows us to push the target to an ideal position in the</span>
+<span class="s2">index </span><span class="s1">_</span><span class="s2">prior</span><span class="s1">_ </span><span class="s2">to distilling it down.  Since data, at scale, can be pushed to a nearly infinite number of points</span>
+<span class="s2">across an index, we need a way to progressively perform more and more finite jumps within it.  To do so is a process</span>
+<span class="s2">I call </span><span class="s1">_</span><span class="s2">diminishment.</span><span class="s1">_</span>
+
+<span class="s0">### </span><span class="s2">Diminishment</span>
+
+<span class="s2">Like a diminished chord, this is a way to divide an indexed numeric range </span><span class="s1">_</span><span class="s2">as evenly as possible</span><span class="s1">_ </span><span class="s2">in a repeatable</span>
+<span class="s2">fashion.  This can easily be accomplished by repeating a </span><span class="s1">_</span><span class="s2">pattern</span><span class="s1">_ </span><span class="s2">of logical digits </span><span class="s1">(</span><span class="s2">called a diminishment </span>
+<span class="s1">_**</span><span class="s2">interval</span><span class="s1">**_) </span><span class="s2">across the index. While this applies to any base, we'll stick to binary for demonstration purposes - </span>
+<span class="s2">let's take an 11-bit index and break it into eight regions using a note </span><span class="s1">(</span><span class="s2">3-bit</span><span class="s1">) </span><span class="s2">pattern -</span>
+
+    <span class="s3">&quot;Note Diminishment of an 11 bit Index&quot;</span>
+
+    <span class="s3">let 𝑛 = The index width</span>
+    <span class="s3">let 𝑤 = The pattern width</span>
+    <span class="s3">let 𝑝 = The pattern interval</span>
+    <span class="s3">let  𝑣(𝑛, 𝑤, 𝑝) ↦ ⌊(2ⁿ / (2ʷ - 1)) * 𝑝⌋</span>
+    <span class="s3">let 𝑑𝑣(𝑛, 𝑤, 𝑝) ↦ 𝑣(𝑛, 𝑤, 𝑝) - 𝑣(𝑛, 𝑤, 𝑚𝑎𝑥(𝑝 - 1, 0))</span>
+    <span class="s3">where 𝑚𝑎𝑥(𝑎, 𝑏) returns the larger of 𝑎 and 𝑏 </span>
+ 
+               <span class="s3">⬐ Interval             ⬐ Synthesized Point</span>
+              <span class="s3">𝑝                      𝑣(𝑝)                         ⬐𝑑𝑣(𝑝)  </span>
+      <span class="s3">[0] | 0 0 0 |   | 0 0 0   0 0 0   0 0 0   0 0 | [   0  ] + 292</span>
+      <span class="s3">[1] | 0 0 1 |   | 0 0 1   0 0 1   0 0 1   0 0 | [  292 ] + 293</span>
+      <span class="s3">[2] | 0 1 0 |   | 0 1 0   0 1 0   0 1 0   0 1 | [  585 ] + 292</span>
+      <span class="s3">[3] | 0 1 1 |   | 0 1 1   0 1 1   0 1 1   0 1 | [  877 ] + 293</span>
+      <span class="s3">[4] | 1 0 0 |   | 1 0 0   1 0 0   1 0 0   1 0 | [ 1170 ] + 292</span>
+      <span class="s3">[5] | 1 0 1 |   | 1 0 1   1 0 1   1 0 1   1 0 | [ 1462 ] + 293</span>
+      <span class="s3">[6] | 1 1 0 |   | 1 1 0   1 1 0   1 1 0   1 1 | [ 1755 ] + 292</span>
+      <span class="s3">[7] | 1 1 1 |   | 1 1 1   1 1 1   1 1 1   1 1 | [ 2047 ]</span>
+          <span class="s3">|←  𝑤  →|   |←              𝑛            →|</span>
+              <span class="s3">⬑ 3                 11 ⬏</span>
+
+<span class="s2">Here, a three-bit pattern index has provided its limit's worth of subdivided points across a larger index - as the interval</span>
+<span class="s2">width increases, the density of points increases </span><span class="s1">_</span><span class="s2">exponentially.</span><span class="s1">_  </span><span class="s2">This allows you to reference a progressively denser </span>
+<span class="s2">set of points across the index by storing only </span><span class="s1">_</span><span class="s2">one</span><span class="s1">_ </span><span class="s2">instance of the pattern.  As the pattern width grows, the distance covered by each </span>
+<span class="s2">step decreases until it reaches `1` because it matches the index's width.  I find it best to think that you're increasing the </span><span class="s1">_</span><span class="s2">resolution</span><span class="s1">_ </span><span class="s2">of an </span>
+<span class="s2">approximation until it attenuates to the target.  The formula to quickly calculate the value of a diminishment point is below</span>
+
+<span class="s1">&lt;picture&gt;</span>
+<span class="s1">&lt;img alt=&quot;Index Diminishment Formula&quot; src=&quot;assets/diminishment point.png&quot; style=&quot;display: block; margin-left: auto; margin-right: auto;&quot;&gt;</span>
+<span class="s1">&lt;/picture&gt;</span>
+
+<span class="s0">### </span><span class="s2">Zero-Kerf Encoding</span>
+
+<span class="s2">When working with diminishment, the pattern's bit-width will often be </span><span class="s1">_</span><span class="s2">small</span><span class="s1">_ </span><span class="s2">- but sometimes you'll need to store a </span>
+<span class="s2">wider pattern.  Since the more common case is fewer bits, we'll need a scheme to tell us how many bits we should</span>
+<span class="s2">be reading forward at any given moment - one that biases towards the smallest number of bits necessary to indicate</span>
+<span class="s2">when more are necessary.  This is what I call </span><span class="s1">_</span><span class="s2">zero-kerf encoding.</span><span class="s1">_  </span><span class="s2">Zero-kerf encoded data holds two parts - a </span><span class="s1">_</span><span class="s2">key</span><span class="s1">_</span>
+<span class="s2">and a </span><span class="s1">_</span><span class="s2">value.</span><span class="s1">_  </span><span class="s2">The key is a small value that flags the immediately proceeding </span><span class="s1">_</span><span class="s2">bit-width</span><span class="s1">_ </span><span class="s2">of the value, meaning you'll </span>
+<span class="s2">read a fixed interval to get a key which tells you a variable number of bits to read the value from.  There's no hard and </span>
+<span class="s2">fast rule defining the key's width or the meaning of its flags - your scheme's data sheet should explain the meaning of </span>
+<span class="s2">both.  It's totally reasonable that your scheme might use multiple ZKE formats, or that a key might only be a single bit</span>
+<span class="s2">wide.</span>
+
+<span class="s0">### </span><span class="s2">Distillation</span>
+
+<span class="s2">Now that we've established the basics of working within the confines of an </span><span class="s1">_</span><span class="s2">index,</span><span class="s1">_ </span><span class="s2">I get to talk about how to build</span>
+<span class="s2">a path to the target through what I call </span><span class="s1">_</span><span class="s2">distillation.</span><span class="s1">_  </span><span class="s2">The idea is simple</span><span class="s1">: </span><span class="s2">how can we describe how to move the target</span>
+<span class="s2">in fewer bits than we gain from doing so?  Using diminishment, we can realistically restrict our range of intervals</span>
+<span class="s2">into a </span><span class="s1">_</span><span class="s2">melody</span><span class="s1">_ </span><span class="s2">- or 64 bits.  It'd be naïve to test 2⁶⁴ diminishment points as, even if it only took a nanosecond for each, that'd still</span>
+<span class="s2">take over 584 </span><span class="s1">_**</span><span class="s2">years</span><span class="s1">**_ </span><span class="s2">to complete - but 2³² would only need a few </span><span class="s1">_</span><span class="s2">seconds</span><span class="s1">_ </span><span class="s2">to exhaust.  So, we have a practical</span>
+<span class="s2">range for the amount of space we </span><span class="s1">_</span><span class="s2">might</span><span class="s1">_ </span><span class="s2">use to store a diminishment interval.  Using ZKE, we could encode</span>
+<span class="s2">a </span><span class="s1">_</span><span class="s2">crumb</span><span class="s1">_ </span><span class="s2">key that indicates four bit-widths</span><span class="s1">: </span><span class="s2">6, 16, 32, and 48.  This means that the </span><span class="s1">_</span><span class="s2">smallest</span><span class="s1">_ </span><span class="s2">diminishment</span>
+<span class="s2">pattern would hold `2⁶ = 64` points in the index while the largest covers a </span><span class="s1">_**</span><span class="s2">practical</span><span class="s1">**_ </span><span class="s2">number.</span>
+
+<span class="s2">To distill our data, we split it into two parts - the </span><span class="s1">_</span><span class="s2">target</span><span class="s1">_ </span><span class="s2">and the </span><span class="s1">_</span><span class="s2">path.</span><span class="s1">_  </span><span class="s2">The </span><span class="s1">_</span><span class="s2">target</span><span class="s1">_ </span><span class="s2">holds the constantly mutating</span>
+<span class="s2">data which eventually becomes our desired result, while the </span><span class="s1">_</span><span class="s2">path</span><span class="s1">_ </span><span class="s2">holds the instructions for how to mutate the data</span>
+<span class="s2">on each step.  When distilling, the data must shrink enough to hold the path information - then, it recurses back over</span>
+<span class="s2">the value created by concatenating both parts until a reduction can no longer be achieved.</span>
+
+    <span class="s3">tl;dr - adjust, shrink, adjust, shrink, adjust, shrink, adj...</span>
+
+<span class="s2">There's </span><span class="s1">_</span><span class="s2">one</span><span class="s1">_ </span><span class="s2">very important caveat</span><span class="s1">: </span><span class="s2">we cannot store the path information on the </span><span class="s1">_</span><span class="s2">most significant side</span><span class="s1">_ </span><span class="s2">of the index,</span>
+<span class="s2">as it might hold logical leading zeros.  As a result, the path information is stored on the </span><span class="s1">_</span><span class="s2">least</span><span class="s1">_ </span><span class="s2">significant side,</span>
+<span class="s2">even though its content isn't reversed.</span>
+
+    <span class="s3">&quot; A Contrived Path &quot;</span>
+
+                        <span class="s3">Target               | Key </span>
+    <span class="s3">(23131)  [ 1 0 1 1 0 1 0 0 1 0 1 0 0 0 1 | 0 0 ] ( Read No More Bits )</span>
+
+                  <span class="s3">Target             |  [1]  | Key </span>
+    <span class="s3">(2890) [ 1 0 1 1 0 1 0 0 1 0 1 0 | 0 0 1 | 0 1 ] ( Read 3 More Bits )</span>
+                                     <span class="s3">|← The Path  →|</span>
+
+                  <span class="s3">Target       |    [17]     | Key </span>
+    <span class="s3">(361)  [ 1 0 1 1 0 1 0 0 1 | 0 1 0 0 0 1 | 1 0 ] ( Read 6 More Bits )</span>
+                               <span class="s3">|←     The Path    →|</span>
+
+<span class="s2">In this example we see three ZKE keys - one that indicates to read no more bits, and two for reading more bits.  All three </span>
+<span class="s2">use the exact same bits, but we logically parsed the information out of the tail by knowing the final crumb was a ZKE </span>
+<span class="s2">key.  The path can hold lots of encoded information, as long as you document what each bit means.  There's an infinite</span>
+<span class="s2">number of ways that the data can be distilled, so for the sake of this document we'll consider the path defined here to</span>
+<span class="s2">be </span><span class="s1">_**</span><span class="s2">standard</span><span class="s1">**_ </span><span class="s2">synthesis.  The standard schema is as follows</span>
+
+    <span class="s3">[   Value   | Reduction | Diminishment | Direction ]</span>
+    <span class="s3">|← Target  →|←                 Path               →|</span>
+
+           <span class="s3">Value: The mutated target value</span>
+       <span class="s3">Reduction: The number of bits reduced (ZKE)</span>
+    <span class="s3">Diminishment: The diminishment interval (ZKE)</span>
+       <span class="s3">Direction: Whether to add, subtract, or stop diminishing (Crumb)</span>
+                    <span class="s3">00 - Add the diminishment and keep recursing</span>
+                    <span class="s3">01 - Subtract it and keep recursing</span>
+                    <span class="s3">10 - Add the diminishment and stop recursing</span>
+                    <span class="s3">11 - Subtract it and stop recursing</span>
+
+<span class="s2">The first two bits are the direction crumb.  This indicates if the diminishment should be added or subtracted to the</span>
+<span class="s2">value, and whether you should still treat the result as mutated and continue recursing.  The next two give you enough</span>
+<span class="s2">information to reverse this step's mutation by referencing the implicit index defined by the reduction value.</span></pre>
+</body>
+</html>
