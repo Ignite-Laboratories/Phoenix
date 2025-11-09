@@ -9,8 +9,9 @@ import (
 )
 
 func main() {
+
 	tiny.Compare("5", 4)
-	tiny.Add(4, "5")
+	tiny.Add(4, "5").Multiply(4)
 	tiny.Int.Add(4, "5")
 	fmt.Println(Diminishment(44, 0, 1, 1, 0, 1, 0))
 

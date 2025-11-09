@@ -1,6 +1,18 @@
 package tiny
 
-import "math/big"
+import (
+	"math/big"
+)
+
+// Rune is a tiny.Operation[rune]
+//
+// see.BaselessCalculation
+var Rune Operation[rune]
+
+// Byte is a tiny.Operation[byte]
+//
+// see.BaselessCalculation
+var Byte Operation[byte]
 
 // Int is a tiny.Operation[int]
 //
