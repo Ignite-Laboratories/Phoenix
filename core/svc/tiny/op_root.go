@@ -20,6 +20,24 @@ func Root(degree, radicand any) Formula[string] {
 //	Root(3,   9) =  3 [3√9]
 //
 // see.BaselessCalculation
+func (p Primitive[TOut]) Root(degree, radicand any) Formula[TOut] {
+	return Formula[TOut]{
+		p: p,
+		fn: func(op Operation[TOut]) TOut {
+			var zero TOut
+			return zero
+		},
+	}
+}
+
+// Root returns the result of a root calculation, with the `degree` (or index) being outside the radical sign and the `radicand` being inside.
+//
+// For Example:
+//
+//	Root(2, 144) = 12 [2√12]
+//	Root(3,   9) =  3 [3√9]
+//
+// see.BaselessCalculation
 func (o Operation[TOut]) Root(degree, radicand any) Formula[TOut] {
 	return Formula[TOut]{
 		op: o,

@@ -10,6 +10,19 @@ func Divide(a, b any) Formula[string] {
 // Divide returns the result of a / b
 //
 // see.BaselessCalculation
+func (p Primitive[TOut]) Divide(a, b any) Formula[TOut] {
+	return Formula[TOut]{
+		p: p,
+		fn: func(op Operation[TOut]) TOut {
+			var zero TOut
+			return zero
+		},
+	}
+}
+
+// Divide returns the result of a / b
+//
+// see.BaselessCalculation
 func (o Operation[TOut]) Divide(a, b any) Formula[TOut] {
 	return Formula[TOut]{
 		op: o,

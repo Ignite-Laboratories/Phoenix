@@ -9,6 +9,8 @@ import (
 )
 
 func main() {
+	tiny.Primitive[int]{}.ShiftLeft(4).Equals()
+	tiny.Base[int](2).Multiply()
 
 	tiny.Compare("5", 4)
 	tiny.Add(4, "5").Multiply(4)

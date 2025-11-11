@@ -10,6 +10,19 @@ func Min(operands ...any) Formula[string] {
 // Min yields the smallest value of all provided operands.
 //
 // see.BaselessCalculation
+func (p Primitive[TOut]) Min(operands ...any) Formula[TOut] {
+	return Formula[TOut]{
+		p: p,
+		fn: func(op Operation[TOut]) TOut {
+			var zero TOut
+			return zero
+		},
+	}
+}
+
+// Min yields the smallest value of all provided operands.
+//
+// see.BaselessCalculation
 func (o Operation[TOut]) Min(operands ...any) Formula[TOut] {
 	return Formula[TOut]{
 		op: o,

@@ -6,9 +6,13 @@ package tiny
 type Context struct {
 	// Radix defines the mathematical base of calculation and is only limited by the type - see.Calculation.
 	//
-	// NOTE: If zero or one, this implicitly means base₁₀.
+	// NOTE:
+	//
+	// If zero or one, this implicitly means base₁₀.
 	//
 	// For base₁₇ and on, every placeholder should be represented by minimal hexadecimal characters, separated by whitespace, and wrapped in parentheses.
+	//
+	// For all bases (except optionally in base₁₀), the output should be prefixed by the radix, a '#' character, and then the value as described above.
 	//
 	// see.BaselessCalculation
 	Radix uint
@@ -20,7 +24,7 @@ type Context struct {
 
 	// Primitive indicates if all calculation should be performed as primitive Go types and not use the advanced 𝑡𝑖𝑛𝑦 engine.
 	//
-	// This allows you to use the formula system for lazy chains of calculation with no loss of performance.
+	// This allows you to use the formula system for lazy chains of calculation with excellent performance at the expense of overly precise calculation.
 	//
 	// see.BaselessCalculation
 	Primitive bool

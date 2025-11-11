@@ -10,6 +10,19 @@ func Max(operands ...any) Formula[string] {
 // Max yields the largest value of all provided operands.
 //
 // see.BaselessCalculation
+func (p Primitive[TOut]) Max(operands ...any) Formula[TOut] {
+	return Formula[TOut]{
+		p: p,
+		fn: func(op Operation[TOut]) TOut {
+			var zero TOut
+			return zero
+		},
+	}
+}
+
+// Max yields the largest value of all provided operands.
+//
+// see.BaselessCalculation
 func (o Operation[TOut]) Max(operands ...any) Formula[TOut] {
 	return Formula[TOut]{
 		op: o,

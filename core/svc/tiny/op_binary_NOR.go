@@ -3,6 +3,19 @@ package tiny
 // NOR performs a bitwise logical NOR operation between the source and b.
 //
 // see.BaselessCalculation
+func (p Primitive[TOut]) NOR(b any) Formula[TOut] {
+	return Formula[TOut]{
+		p: p,
+		fn: func(op Operation[TOut]) TOut {
+			var zero TOut
+			return zero
+		},
+	}
+}
+
+// NOR performs a bitwise logical NOR operation between the source and b.
+//
+// see.BaselessCalculation
 func (o Operation[TOut]) NOR(b any) Formula[TOut] {
 	return Formula[TOut]{
 		op: o,

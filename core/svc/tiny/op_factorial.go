@@ -18,6 +18,23 @@ func Factorial(operand any) Formula[string] {
 //	Factorial(5) = 120 [ 5⋅4⋅3⋅2⋅1 ]
 //
 // see.BaselessCalculation
+func (p Primitive[TOut]) Factorial(operand any) Formula[TOut] {
+	return Formula[TOut]{
+		p: p,
+		fn: func(op Operation[TOut]) TOut {
+			var zero TOut
+			return zero
+		},
+	}
+}
+
+// Factorial returns the result of "operand!"
+//
+// For Example:
+//
+//	Factorial(5) = 120 [ 5⋅4⋅3⋅2⋅1 ]
+//
+// see.BaselessCalculation
 func (o Operation[TOut]) Factorial(operand any) Formula[TOut] {
 	return Formula[TOut]{
 		op: o,

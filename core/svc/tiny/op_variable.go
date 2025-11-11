@@ -8,6 +8,19 @@ package tiny
 // see.BaselessCalculation
 func Variable(name string, operand any) Formula[string] { return String.Variable(name, operand) }
 
+// Variable wraps the entire Formula up into a single variable name.
+//
+// see.BaselessCalculation
+func (p Primitive[TOut]) Variable(name string) Formula[TOut] {
+	return Formula[TOut]{
+		p:    p,
+		name: name,
+		fn: func(Operation[TOut]) TOut {
+
+		},
+	}
+}
+
 // Variable simply stores the provided operand and yields a Formula.
 //
 // see.BaselessCalculation

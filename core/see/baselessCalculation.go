@@ -57,10 +57,10 @@ All numeric values in 𝑡𝑖𝑛𝑦 are emitted in the following style:
 
 The non-numeric special characters will -always- appear in the following order, though only some may be present in the emitted value:
 
-  0. "~" - the value was observed as irrational
-  1. "#" - the number to the left indicates the radix of the value
-  2. "." - the decimal place breaks the whole and fractional parts
-  3. "‾" - the digits to the right of the overscore are repeated infinitely
+  0. "~" - irrationality -  the value was observed as irrational
+  1. "#" - radix - the number to the left indicates the radix of the value
+  2. "." - decimal - the decimal place breaks the whole and fractional parts
+  3. "‾" - periodicity - the digits to the right of the overscore are repeated infinitely
 
 If the output number does not include a radix, base₁₀ is universally implied.
 
@@ -69,34 +69,38 @@ characters necessary, and whitespace is placed between each logical member (incl
 
 # Performing Arithmetic
 
-All arithmetic derives from a tiny.Operation - which describes a path to the tiny.Context from which the calculation
-should be performed.  The context dictates the radix and precision of all subsequent arithmetic.  To gain an operation
-object, you have three options:
+Most arithmetic derives from a tiny.Operation - which describes a path to the tiny.Context from which the calculation
+should be performed.  The context dictates the radix and precision of all subsequent arithmetic.  To gain a tiny.Operation,
+you have four options:
 
-  0. By calling a direct string arithmetic operation from the tiny package
-  1. By calling a typed arithmetic operation from the tiny package
-  2. By casting a std.Path to a tiny.Operation[TOut]
+  0. By calling a string default context arithmetic method off of the tiny package
+  1. By calling a typed default context arithmetic method off of the tiny package
+  2. By creating a default context operation as a composite literal
+  3. By casting a std.Path leading to a tiny.Context as a tiny.Operation[TOut]
 
 For example, here's how to add 42 and 8 using all three methods:
 
-	0 - tiny.Add(42, 8) // string result
-	1 - tiny.Int8.Add(42,8) // int8 result
-	2 - tiny.Operation[float64](std.Path{"Step0","Ctx"}).Add(42, 8) // float64 result
+	0 - tiny.Add(42, 8) // string result, base₁₀
+	1 - tiny.Int8.Add(42,8) // int8 result, base₁₀
+	2 - tiny.Operation[complex64]{}.Add(42, 8) // complex64 result, base₁₀
+	3 - tiny.Operation[float64](std.Path{"Step0","MyCtx"}).Add(42, 8) // float64 result, contextual base
 
-In the final option, the referenced path must yield a tiny.Context structure which establishes the basis of calculation
+In the final option, the referenced path must lead to a tiny.Context structure which establishes the basis of calculation
 (effectively taking us away from a "baseless" calculator).  If it's unable to yield a tiny.Context
 from the prescribed path, 𝑡𝑖𝑛𝑦 will panic as it cannot assume you'll accept it falling back to the default context
 and should alert you of the issue.
 
 If you'd like to explicitly create a tiny.Operation referencing the default context, please use an empty path:
 
-	op := tiny.Operation[byte](std.Path{}) // An atlas.Radix, atlas.Precision, byte result
+	// Both ways reference an atlas.Radix, atlas.Precision, byte context
+	op := tiny.Operation[byte](std.Path{})
+	op  = tiny.Operation[byte]{}
 
 # Supported Types
 
 𝑡𝑖𝑛𝑦 can parse and emit arithmetic in the following formats:
 
-	// base₁₀
+	// base₁₀ - tiny.Numeric types
 	uint, uint8, uint16, uint32, uint64, uintptr
 	int, int8, int16, int32, int64
 	float32, float64
@@ -111,11 +115,11 @@ If you'd like to explicitly create a tiny.Operation referencing the default cont
 	string
 
 During parsing or emission the radix is implied by the datatype.  Primitive Go types are implicitly treated as base₁₀,
-and slices or arrays of them threat their addressable range as the radix - meaning a []byte is a base₂₅₆ value, with
+and slices or arrays of them treat their addressable range as the radix - meaning a []byte is a base₂₅₆ value, with
 each element representing a single placeholder.  Strings and `big` types are base-converted from their stored value
 to the contextual radix.
 
-When using signed types, negative values are parsed as holding their absolute value.
+When using signed types, negative placeholders are parsed as holding their absolute value.
 
 # Inf, NaN, and signed zeros
 
@@ -151,15 +155,19 @@ are simply filtered through a different context during calculation to yield a va
 
 Another way to think about it is that defining a minimum and maximum establishes a "closed interval," which also is a way
 to describe a logical numeric "index."  For example, you can restrict calculation to a byte index by setting the
-bounds to [0, 255].
+bounds to a closed interval of [0, 255].
+
+To quickly create a bounded base₁₀ context, you may use the tiny.Bounded method
+
+	tiny.Bounded[float64](0, 42) // Creates a base₁₀ float64 context bounded to [0,42]
 
 # Primitive Mode
 
 𝑡𝑖𝑛𝑦 is not a performant calculator by any means, nor does it claim to be.  However, if you'd like to take advantage
 of the formula engine -without- the advanced functionality that 𝑡𝑖𝑛𝑦 offers for radix and precision, you can set your
-context into "primitive mode" by setting `Primitive` to true.  This does a few things:
+tiny.Context into "primitive mode" by setting `Primitive` to true.  This does a few things:
 
-  0. Only built-in numeric Go types are supported - strings are not
+  0. Only built-in tiny.Numeric Go types are supported - strings are not
   1. All arithmetic happens within the rules of the primitive Go type you provide
   2. Only minimal implicit type inference and coercion can be performed
   3. 𝑡𝑖𝑛𝑦 will panic whenever you have broken these rules
@@ -169,13 +177,17 @@ This basically means that if you wish to add a `float32` and `float64`, you can 
 and `float64`.  While we can do a minimal amount of coercion like this, without strings we're limited to the rules
 of Go's built-in type arithmetic.
 
-The primitive Go types are any built-in int, uint, float, or complex numeric type.
+The primitive Go types are any built-in int, uint, float, or complex type defined by the tiny.Numeric interface.
 
     NOTE NOTE NOTE NOTE NOTE NOTE NOTE NOTE NOTE NOTE NOTE NOTE NOTE NOTE NOTE NOTE NOTE
     NOTE                                                                            NOTE
     NOTE  Primitive Mode inherently re-enables the inability to represent "0.1"!!!  NOTE
     NOTE                                                                            NOTE
     NOTE NOTE NOTE NOTE NOTE NOTE NOTE NOTE NOTE NOTE NOTE NOTE NOTE NOTE NOTE NOTE NOTE
+
+To quickly create a primitive context (implicitly restricted to base₁₀), you may use the tiny.Primitive method
+
+	tiny.Primitive[complex128]() // Creates a primitive complex128 context
 
 # Overriding the Defaults
 

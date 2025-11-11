@@ -10,6 +10,19 @@ func Power(base, exponent any) Formula[string] {
 // Power returns the result of `base` to the power of `exponent`
 //
 // see.BaselessCalculation
+func (p Primitive[TOut]) Power(base, exponent any) Formula[TOut] {
+	return Formula[TOut]{
+		p: p,
+		fn: func(op Operation[TOut]) TOut {
+			var zero TOut
+			return zero
+		},
+	}
+}
+
+// Power returns the result of `base` to the power of `exponent`
+//
+// see.BaselessCalculation
 func (o Operation[TOut]) Power(base, exponent any) Formula[TOut] {
 	return Formula[TOut]{
 		op: o,

@@ -10,6 +10,19 @@ func Modulo(a, b any) Formula[string] {
 // Modulo returns the result of a % b
 //
 // see.BaselessCalculation
+func (p Primitive[TOut]) Modulo(a, b any) Formula[TOut] {
+	return Formula[TOut]{
+		p: p,
+		fn: func(op Operation[TOut]) TOut {
+			var zero TOut
+			return zero
+		},
+	}
+}
+
+// Modulo returns the result of a % b
+//
+// see.BaselessCalculation
 func (o Operation[TOut]) Modulo(a, b any) Formula[TOut] {
 	return Formula[TOut]{
 		op: o,

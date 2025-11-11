@@ -29,6 +29,28 @@ func Compare(a, b any) Artifact[ordinal.Direction, string] {
 // implicitly, signed types.)
 //
 // see.BaselessCalculation
+func (p Primitive[TOut]) Compare(b any) Artifact[ordinal.Direction, TOut] {
+	return Formula[TOut]{
+		p: p,
+		fn: func(op Operation[TOut]) TOut {
+			var zero TOut
+			return zero
+		},
+	}
+}
+
+// Compare calculates the ordinal.Direction of the source operation's result relative to b.
+//
+// ordinal.Negative (-1) - a is relatively before b
+//
+// ordinal.Static (0) - a is relatively the same as b
+//
+// ordinal.Positive (1) - a is relatively after b
+//
+// NOTE: Compare yields an Artifact, rather than a Formula, as its output is restricted to an ordinal.Direction (and
+// implicitly, signed types.)
+//
+// see.BaselessCalculation
 func (o Operation[TOut]) Compare(a, b any) Artifact[ordinal.Direction, TOut] {
 	return Artifact[ordinal.Direction, TOut]{
 		op: o,
